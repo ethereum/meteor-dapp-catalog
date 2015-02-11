@@ -1,7 +1,7 @@
 {
     "app": {
-        "loading": "Loading...",
-        "offline": "Can't connect are you offline?",
+        "ethereumDapps": "Ethereum Dapps",
+        "thirdPartyDapps": "Third Party Dapps",
         "logginIn": "Logging in..."
     },
     "error": {

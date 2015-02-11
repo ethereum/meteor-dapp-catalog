@@ -1,47 +1,55 @@
 <template name="views_home">
     <div class="dapp-container">
 
-        <img src="" alt="">
+        <h1 class="ethereum-logo"> Ethereum </h1>
+
+
+        <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
+        <form class="container url-bar" action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
+            <input type="text" class="dapp-url-bar" placeholder="{{i18n 'catalog.home.urlPlaceholder'}}">
+        </form>
 
         <div class="row clear">
-            <div class="col col-6">
-                <h1>{{{i18n 'catalog.accounts.title'}}}</h1>
+            
+
+            <div class="col col-6 mobile-full">
+                <h1>{{{i18n 'catalog.home.ethereumDapps'}}}</h1>
                 <p>Lorem ipsum Nisi et ut culpa consequat pariatur consequat cillum et quis magna ea fugiat in do laborum.</p>
 
-                <a class="dapp-box">
+                <a href="http://en.wikipedia.org/wiki/Special:Random" class="dapp-box">
                     <h2>Whisper Chat</h2>
-                    <p>Lorem ipsum Dolor tempor culpa amet.</p>
+                    <p>Dark messaging for a more private conversation</p>
+                </a>
+
+                <a href="wallet" class="dapp-box">
+                    <h2>Wallet</h2>
+                    <p>Play with your own money.</p>
                 </a>
 
                 <a class="dapp-box">
-                    <h2>Whisper Chat</h2>
-                    <p>Lorem ipsum Dolor tempor culpa amet.</p>
+                    <h2>Transparent Democracy </h2>
+                    <p> A Decentralized Organization whith fully trackable expenses that are all up to vote</p>
                 </a>
 
                 <a class="dapp-box">
-                    <h2>Whisper Chat</h2>
-                    <p>Lorem ipsum Dolor tempor culpa amet.</p>
-                </a>
-
-                <a class="dapp-box">
-                    <h2>Whisper Chat</h2>
-                    <p>Lorem ipsum Dolor tempor culpa amet.</p>
+                    <h2>Custom Asset</h2>
+                    <p> Create your own tradeable asset, currency or hour tracking</p>
                 </a>
                 
                 
             </div>
-            <div class="col col-6">
-                <h1>{{{i18n 'catalog.accounts.title'}}}</h1>
+            <div class="col col-6 mobile-full">
+                <h1>{{{i18n 'catalog.home.thirdPartyDapps'}}}</h1>
                 <p>Lorem ipsum Nisi et ut culpa consequat pariatur consequat cillum et quis magna ea fugiat in do laborum.</p>
 
                 <a class="dapp-box">
-                    <h2>Whisper Chat</h2>
-                    <p>Lorem ipsum Dolor tempor culpa amet.</p>
+                    <h2>Decentralized Exchange</h2>
+                    <p>Someone build this.</p>
                 </a>
 
                 <a class="dapp-box">
-                    <h2>Whisper Chat</h2>
-                    <p>Lorem ipsum Dolor tempor culpa amet.</p>
+                    <h2>Russian Roullete</h2>
+                    <p>Someone else build that.</p>
                 </a>
             </div>
         </div>

@@ -15,3 +15,32 @@
 @colorBackgroundHeader: #d9d0d0;
 
 
+h1.ethereum-logo {
+    height: @gridHeight * 8;
+    padding-left: 100%;
+    margin-bottom: @gridHeight * 2;
+    margin-top: @gridHeight * 2;
+    background: url(ethereum-brand.svg) no-repeat center;
+    background-size: contain;
+    text-indent: -100em;
+    overflow: hidden;
+    position: -webkit-sticky;
+}
+
+.dapp-url-bar {
+    margin-bottom: @gridHeight * 3;
+}
+
+.dapp-box {
+    .calc(width, ~'50% - 16px');
+    min-width: @gridWidth*5;
+    max-width: @gridWidth*10;
+}
+
+/* #### All small phone screens landscape #### */
+@media screen and (max-width: 800px){
+    .dapp-box {
+        width: 100%;
+        margin-right: 0;
+    }
+}
