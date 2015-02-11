@@ -1,27 +1,45 @@
 <template name="views_home">
     <div class="dapp-container">
 
-        <h1 class="ethereum-logo"> Ethereum </h1>
-
-
         <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
         <form class="container url-bar" action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
+            <h1 class="ethereum-logo"> Ethereum </h1>
             <input type="text" class="dapp-url-bar" placeholder="{{i18n 'catalog.home.urlPlaceholder'}}">
         </form>
 
-        <div class="row clear">
+        <div class="dapp-listing row clear">
             
 
             <div class="col col-6 mobile-full">
                 <h1>{{{i18n 'catalog.home.ethereumDapps'}}}</h1>
                 <p>Lorem ipsum Nisi et ut culpa consequat pariatur consequat cillum et quis magna ea fugiat in do laborum.</p>
 
-                <a href="http://en.wikipedia.org/wiki/Special:Random" class="dapp-box">
+                <a href="http://ethereum-dapp-whisper-client.meteor.com/chat/amsteam" class="dapp-box">
                     <h2>Whisper Chat</h2>
                     <p>Dark messaging for a more private conversation</p>
                 </a>
 
-                <a href="wallet" class="dapp-box">
+                <a href="http://en.wikipedia.org/wiki/Special:Random" class="dapp-box">
+                    <h2>Wallet</h2>
+                    <p>Play with your own money.</p>
+                </a>
+
+                <a class="dapp-box">
+                    <h2>Transparent Democracy </h2>
+                    <p> A Decentralized Organization whith fully trackable expenses that are all up to vote</p>
+                </a>
+
+                <a class="dapp-box">
+                    <h2>Custom Asset</h2>
+                    <p> Create your own tradeable asset, currency or hour tracking</p>
+                </a>
+
+                <a href="http://ethereum-dapp-whisper-client.meteor.com/chat/amsteam" class="dapp-box">
+                    <h2>Whisper Chat</h2>
+                    <p>Dark messaging for a more private conversation</p>
+                </a>
+
+                <a href="http://en.wikipedia.org/wiki/Special:Random" class="dapp-box">
                     <h2>Wallet</h2>
                     <p>Play with your own money.</p>
                 </a>

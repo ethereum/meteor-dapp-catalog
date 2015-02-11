@@ -15,20 +15,65 @@
 @colorBackgroundHeader: #d9d0d0;
 
 
-h1.ethereum-logo {
-    height: @gridHeight * 8;
-    padding-left: 100%;
-    margin-bottom: @gridHeight * 2;
-    margin-top: @gridHeight * 2;
-    background: url(ethereum-brand.svg) no-repeat center;
-    background-size: contain;
-    text-indent: -100em;
-    overflow: hidden;
-    position: -webkit-sticky;
+.url-bar {
+    margin-bottom: @gridHeight * 3;
+    // position: absolute;
+    // top: 20px;
+    // left: 0;
+    // right: 0;
+
+    .transition(margin-bottom 500);
+
+    h1.ethereum-logo {
+        height: @gridHeight * 8;
+        padding-left: 100%;
+        margin-bottom: @gridHeight * 4;
+        margin-top: @gridHeight * 6;
+        background: url(ethereum-brand.svg) no-repeat center;
+        background-size: contain;
+        text-indent: -100em;
+        overflow: hidden;
+        .transition(height 1000, margin-top 1000, margin-bottom 1000);
+    }
+
+    .dapp-url-bar {
+        position: absolute;
+        top: @gridHeight * 9;
+        .transition(top 500);
+      //  margin-bottom: @gridHeight * 3;
+    }
+
+
+    &.dapp-url-bar-small {
+        //position: fixed;
+        margin-bottom: @gridHeight ;
+
+        
+        h1.ethereum-logo {
+            height: @gridHeight * 4;
+            margin-top: @gridHeight;
+            margin-bottom: @gridHeight * 3;
+        }
+
+        .dapp-url-bar {
+            top: @gridHeight * 4;
+        }
+
+    }
+
+    &.dapp-url-bar-fixed {
+        .dapp-url-bar {
+            position: fixed;
+            top: 10px;
+            left: @gridWidth;
+            right: @gridWidth;
+            .transition(top 0);
+        }
+    }
 }
 
-.dapp-url-bar {
-    margin-bottom: @gridHeight * 3;
+.dapp-listing {
+    // padding-top: @gridHeight * 18;
 }
 
 .dapp-box {
