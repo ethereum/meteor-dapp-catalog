@@ -1,11 +1,12 @@
 <template name="views_home">
-    <div class="dapp-container">
 
-        <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
-        <form class="container url-bar" action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
-            <h1 class="ethereum-logo"> Ethereum </h1>
-            <input type="text" class="dapp-url-bar" placeholder="{{i18n 'catalog.home.urlPlaceholder'}}">
-        </form>
+    <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
+    <form class="url-bar" action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
+        <h1 class="ethereum-logo"> Ethereum </h1>
+        <input type="text" class="dapp-url-bar" placeholder="{{i18n 'catalog.home.urlPlaceholder'}}">
+    </form>
+
+    <div class="dapp-container">
 
         <div class="dapp-listing row clear">
             

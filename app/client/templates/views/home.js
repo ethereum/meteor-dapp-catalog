@@ -12,20 +12,28 @@ The chats template
 */
 
 
+/**
+Attach scroll event to make url bar fixed
+
+@method created
+*/
 Template['views_home'].created = function(){
     var template = this;
 
     this._scrollEvent = function(e){
-        if ($(window).scrollTop() > 110){
-            template.$('.url-bar').addClass('dapp-url-bar-fixed')
-        } else if ($(window).scrollTop() > 60){
-            template.$('.url-bar').addClass('dapp-url-bar-small')
+        if ($(window).scrollTop() > 280){
+            template.$('.url-bar').addClass('fixed')
         } else {
-            template.$('.url-bar').removeClass('dapp-url-bar-fixed dapp-url-bar-small')
+            template.$('.url-bar').removeClass('fixed');
         }
 
+        if ($(window).scrollTop() > 60){
+            template.$('.url-bar').addClass('small')
+        } else {
+            template.$('.url-bar').removeClass('small');
+        }
     };
-    $(window).on('scroll', _.debounce(this._scrollEvent, 10, true));
+    $(window).on('scroll', this._scrollEvent);
 };
 
 Template['views_home'].destroyed = function(){
@@ -66,8 +74,6 @@ Template['views_home'].events({
         window.location.href = requestedProtocol + url;
         template.find('input.dapp-url-bar').value = ""
     }
-
-
 });
 
 

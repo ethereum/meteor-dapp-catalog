@@ -48,8 +48,14 @@
 }
 
 .dapp-url-bar {
+    display: block;
+    // width: 100%;
+    // position: absolute;
+    // left: 0;
+    // right: 0;
     text-align: center;
-    .calc(width, ~'100vw - 64px');    
+    margin: 0 @defaultMargin;
+    .calc(width, ~'100% - 64px');    
     .border-radius(8px);
 }
 
