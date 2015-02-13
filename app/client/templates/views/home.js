@@ -23,7 +23,6 @@ Template['views_home'].created = function(){
         } else {
             template.$('.url-bar').removeClass('dapp-url-bar-fixed dapp-url-bar-small')
         }
-    console.log($(window).scrollTop());
 
     };
     $(window).on('scroll', _.debounce(this._scrollEvent, 10, true));
