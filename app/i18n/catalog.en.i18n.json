@@ -3,7 +3,7 @@
         "home": {
             "ethereumDapps": "<strong>Ethereum</strong> Dapps",
             "thirdPartyDapps": "<strong>Third Party</strong> Dapps",
-            "urlPlaceholder":"type the address of any dapp you want"
+            "urlPlaceholder":"Type the address of a dapp"
         }
     }
 }
