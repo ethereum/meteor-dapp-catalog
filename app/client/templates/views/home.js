@@ -67,6 +67,7 @@ Template['views_home'].events({
     @event submit form.url-bar
     */
     'submit form.url-bar': function(e, template){
+        // if there's no http, add it.
         var url = template.find('input.dapp-url-bar').value,
         matches = url.match(/^([a-z]*\:\/\/)?([^\/.]+)(:?\/)(.*|$)/i),
         requestedProtocol = (matches && matches[1] != "undefined")? "" : "http://";
