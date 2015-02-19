@@ -15,75 +15,14 @@
 @colorBackgroundHeader: #d9d0d0;
 
 
-.url-bar {
-    z-index: 2;
-    position: relative;
-    margin-bottom: @gridHeight * 3;
-
-
-    h1.ethereum-logo {
-        height: @gridHeight * 8;
-        padding-left: 100%;
-        margin-bottom: @gridHeight * 4;
-        margin-top: @gridHeight * 6;
-        background: url('ethereum-brand.svg') no-repeat center;
-        .background-size(contain);
-        text-indent: -100em;
-        overflow: hidden;
-
-        // ANIMATION
-        .transition(transform @animationSpeed*2);
-    }
-
-    .dapp-url-bar {
-        position: absolute;
-        top: @gridHeight * 9;
-
-        // ANIMATION
-        .transition(top @animationSpeed);
-    }
-
-
-    &.small {
-        //position: fixed;
-        margin-bottom: @gridHeight ;
-
-        
-        h1.ethereum-logo {
-            .transform(scale(0.5), translateY(170px));
-        }
-
-        .dapp-url-bar {
-            .transition(top 0);
-        }
-
-    }
-
-    &.fixed {
-        .dapp-url-bar {
-            position: fixed;
-            top: 10px;
-            .calc(width, ~'100% - 64px'); 
-            left: @gridWidth;
-            .transition(top 0);
-        }
-    }
-}
-
-.dapp-listing {
-    // padding-top: @gridHeight * 18;
-}
-
-.dapp-box {
-    .calc(width, ~'50% - 16px');
-    min-width: @gridWidth*5;
-    max-width: @gridWidth*10;
-}
-
-/* #### All small phone screens landscape #### */
-@media screen and (max-width: 800px){
-    .dapp-box {
-        width: 100%;
-        margin-right: 0;
-    }
+.block-chain {
+    // background: @colorGrayLight;
+    // width: 100%;
+    margin: 0 -40px;
+    height: @gridHeight * 17;
+    padding: @gridHeight/2 @gridWidth/2;
+    .dapp-overflow;
+    // box-shadow: inset @colorGray 8px 2px 10px;
+    // border: solid @colorGray 2px;
+    // border-radius: 4px;
 }

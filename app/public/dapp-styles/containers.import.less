@@ -311,6 +311,46 @@ body {
         font-size: 1.5em;
         font-weight: 100;
     }
+
+    &.card {
+        padding-left: @gridWidth * 3;
+        padding-right: @gridWidth * 2;
+        width: @gridWidth * 16;
+        max-width: none;
+        height: auto;
+        border-radius: 4px;
+        background-repeat-x: no-repeat;
+        background-repeat: repeat-y;
+        background-size: @gridWidth * 2;
+
+        h1 {
+            margin-bottom: 0;
+        }
+        h3 {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-transform: lowercase;
+            margin-top: 0;
+        }
+        
+        dd, dt {
+            display: block;
+            height: @gridHeight * 2;
+            font-size: 1.1em;
+            float: left;
+        }
+        dd {
+            margin: 0;
+            width: @gridWidth *4;
+            clear: both;
+            text-align: right;
+        }
+        dt {
+            font-weight: 500;
+            padding-left: @gridWidth/2;
+        }
+    }
 }
 
 

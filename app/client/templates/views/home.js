@@ -18,63 +18,67 @@ Attach scroll event to make url bar fixed
 @method created
 */
 Template['views_home'].created = function(){
-    var template = this;
+    //localStorage.clear();
 
-    this._scrollEvent = function(e){
-        if ($(window).scrollTop() > 280){
-            template.$('.url-bar').addClass('fixed')
-        } else {
-            template.$('.url-bar').removeClass('fixed');
-        }
-
-        if ($(window).scrollTop() > 60){
-            template.$('.url-bar').addClass('small')
-        } else {
-            template.$('.url-bar').removeClass('small');
-        }
-    };
-    $(window).on('scroll', this._scrollEvent);
+    var block = Blocks.findOne({},{sort: {number: -1}});
+    // initiate the geo pattern
+    var pattern = GeoPattern.generate((block) ? block.hash : "---");
+    $('.latest-block-info').css('background-image', pattern.toDataUrl());
 };
 
 Template['views_home'].destroyed = function(){
-    if(this._scrollEvent)
-        $(window).off('scroll', this._scrollEvent); 
+   
 };
 
 
 
 Template['views_home'].helpers({
     /**
-    Returns all topics, available in this chat
+    Get all current blocks
 
-    @method (topics)
-    @return {Array}
+    @method (blocks)
     */
-    // 'topics': function(messages){
-    //     if(_.isArray(messages)) {
-    //         var messages = Messages.find({_id: {$in: messages}}).fetch();
-    //         return _.uniq(_.compact(_.pluck(messages, 'topic')));
-    //     }
-    // }
+    'blocks': function(){
+        var blocks =  Blocks.find({},{sort: {number: -1}});
+        var template = Template.instance();
+
+        Tracker.afterFlush(function(){
+            if(template.view.isRendered)
+                template.$('.wrapper').css('width', (blocks.count() * 542) + 'px');
+        });
+        return blocks;
+    }, 
+    /**
+    Returns size in latest block
+
+    @method (currentBlockNumber)
+    */
+    'currentBlockPattern': function(){
+        var pattern = GeoPattern.generate(this.hash);
+        return (pattern) ?  pattern.toDataUrl() : "white";
+    }, 
+    /**
+    Returns Peercount
+
+    @method (peerCount)
+    */
+    'peerCount': function(){
+        return (web3.eth.peerCount) ?  web3.eth.peerCount : 0 ;
+    }, 
+    /**
+    Returns Gas Price
+
+    @method (gasPrice)
+    */
+    'gasPrice': function(){
+        return (web3.eth.gasPrice) ?  EthTools.fromWei(web3.eth.gasPrice,'finney') : "---";
+    }
 });
 
 
 
 Template['views_home'].events({
-    /**
-    Detect a link submitted and navigate to it
 
-    @event submit form.url-bar
-    */
-    'submit form.url-bar': function(e, template){
-        // if there's no http, add it.
-        var url = template.find('input.dapp-url-bar').value,
-        matches = url.match(/^([a-z]*\:\/\/)?([^\/.]+)(:?\/)(.*|$)/i),
-        requestedProtocol = (matches && matches[1] != "undefined")? "" : "http://";
-
-        window.location.href = requestedProtocol + url;
-        template.find('input.dapp-url-bar').value = ""
-    }
 });
 
 

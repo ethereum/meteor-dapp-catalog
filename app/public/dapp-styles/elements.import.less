@@ -56,6 +56,20 @@
 }
 
 
+.dapp-big-number {
+    font-size: 2em;
+    display: inline-block;
+    width: @gridWidth * 6;
+    margin-right: @gridWidth/2;
+
+    dd {
+        margin: 0;
+    }
+    dt  {
+        color: @colorLink;
+    }
+}
+
 // default elements
 
 a,
@@ -112,7 +126,7 @@ h2 {
     display: inline-block;
     padding: 0 @defaultPaddingHorizontal/4;
     padding-bottom: 1px;
-    margin: @defaultMargin*3 0;
+    margin: @defaultMargin*4 0 @defaultMargin*1;
     font-weight: 500;
     font-size: 1em;
     text-transform: uppercase;
