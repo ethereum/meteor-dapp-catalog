@@ -39,14 +39,14 @@ Template['views_home'].helpers({
     @method (blocks)
     */
     'blocks': function(){
-        var blocks =  Blocks.find({},{sort: {number: -1}});
+        var blocks =  Blocks.find({},{limit: 50, sort: {number: -1}});
         var template = Template.instance();
 
         Tracker.afterFlush(function(){
             if(template.view.isRendered)
-                template.$('.wrapper').css('width', (blocks.count() * 542) + 'px');
+                template.$('.wrapper').css('width', (blocks.count() * 562 + 500) + 'px');
         });
-        return blocks;
+        return blocks.fetch();
     }, 
     /**
     Returns size in latest block

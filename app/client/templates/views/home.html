@@ -26,6 +26,7 @@
         <div class="wrapper">
             {{#each blocks}}
                 <div class="dapp-box card" style="background-image:{{currentBlockPattern}}">
+                    {{> dapp_identicon identity='miner'}}
                     <h1>Block {{number}}</h1>
                     <h3>{{hash}}</h3>
                     <dl>
@@ -40,6 +41,9 @@
                     </dl>
                 </div>
             {{/each}}
+            <div class="" style="">
+                    <h3>End of loaded blocks.</h3>
+            </div>
         </div>
     </div>
 </template>

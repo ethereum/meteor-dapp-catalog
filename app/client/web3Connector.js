@@ -12,6 +12,7 @@ watcher.changed(function(result) {
         size: web3.eth.block(result.number).size,
         time: web3.eth.block(result.number).time,
         hash: web3.eth.block(result.number).hash,
+        miner: web3.eth.block(result.number).coinbase,
         uncles: web3.eth.block(result.number).uncles.Length
     });
 });

@@ -25,4 +25,22 @@
     // box-shadow: inset @colorGray 8px 2px 10px;
     // border: solid @colorGray 2px;
     // border-radius: 4px;
+
+    .wrapper {
+        padding-right: @gridWidth * 5;
+
+        .card {
+            position: relative;
+
+            .dapp-identicon {
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                left: 44px;
+                top: 38.2px;
+                border: solid 2px @colorWhite;
+
+            }
+        }
+    }
 }
