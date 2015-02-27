@@ -18,217 +18,63 @@ Attach scroll event to make url bar fixed
 @method created
 */
 Template['views_home'].created = function(){
-    //localStorage.clear();
+    var template = this;
 
-    var block = Blocks.findOne({},{sort: {number: -1}});
-    // initiate the geo pattern
-    var pattern = GeoPattern.generate((block) ? block.hash : "---");
-    $('.latest-block-info').css('background-image', pattern.toDataUrl());
-
-    //TempateVar.set('miningSelector', 0);
-
-
-    try {
-
-        //if you have access to the web3 object, clear the database and reload
-        if(web3.eth.number != undefined) {
-            currentBlock = web3.eth.number;
-
-            Blocks.remove({number: { $lt: currentBlock - 50 } })
-         
-
-            for (i = currentBlock; i > currentBlock - 10 ; i --) {
-                            
-                // update balance
-                Blocks.upsert('block_'+ i, {
-                    _id: 'block_'+ i,
-                    number: i,
-                    gasUsed: web3.eth.block(i).gasUsed,
-                    size: web3.eth.block(i).size,
-                    time: web3.eth.block(i).time,
-                    hash: web3.eth.block(i).hash,
-                    miner: web3.eth.block(i).coinbase,
-                    uncles: web3.eth.block(i).uncles.Length
-                });  
-
-
-            }
+    this._scrollEvent = function(e){
+        if ($(window).scrollTop() > 280){
+            template.$('.url-bar').addClass('fixed')
+        } else {
+            template.$('.url-bar').removeClass('fixed');
         }
 
-    } catch(err) {
-        console.log("no web3 object");
-    }
-
-
-
+        if ($(window).scrollTop() > 60){
+            template.$('.url-bar').addClass('small')
+        } else {
+            template.$('.url-bar').removeClass('small');
+        }
+    };
+    $(window).on('scroll', this._scrollEvent);
 };
 
-
 Template['views_home'].destroyed = function(){
-   
+    if(this._scrollEvent)
+        $(window).off('scroll', this._scrollEvent); 
 };
 
 
 
 Template['views_home'].helpers({
     /**
-    Get all current blocks
+    Returns all topics, available in this chat
 
-    @method (blocks)
+    @method (topics)
+    @return {Array}
     */
-    'blocks': function(){
-        var blocks =  Blocks.find({},{limit: 50, sort: {number: -1}});
-        var template = Template.instance();
-
-        Tracker.afterFlush(function(){
-            if(template.view.isRendered)
-                template.$('.wrapper').css('width', (blocks.count() * 562 + 500) + 'px');
-        });
-        return blocks.fetch();
-    }, 
-    /**
-    Returns size in latest block
-
-    @method (currentBlockNumber)
-    */
-    'currentBlockPattern': function(){
-        var pattern = GeoPattern.generate(this.hash);
-        return (pattern) ?  pattern.toDataUrl() : "white";
-    }, 
-    /**
-    Returns Peercount
-
-    @method (peerCount)
-    */
-    'peerCount': function(){
-        try { 
-            return web3.eth.peerCount;
-        } catch(err) { 
-            return "---"
-        }
-    }, 
-    /**
-    Returns Gas Price
-
-    @method (gasPrice)
-    */
-    'gasPrice': function(){
-        try { 
-            return EthTools.fromWei(web3.eth.gasPrice,'finney');
-        } catch(err) { 
-            return "---"
-        }
-    }, 
-    /**
-    Returns Mining status handle
-
-    @method (gasPrice)
-    */
-    'miningSlider': function(){
-        return 0;
-    } , 
-    /**
-    Returns Mining status handle
-
-    @method (gasPrice)
-    */
-    'timeSpent': function(){
-        if (localStorage.timeSpent) {
-            if (localStorage.timeSpent<(3*60)) {
-                return localStorage.timeSpent + "<small> Seconds </small>";
-            } else if (localStorage.timeSpent<(3*60*60)) {
-                return Math.round(10*localStorage.timeSpent/60)/10 + "<small> Minutes </small>";
-            } else if (localStorage.timeSpent<(60*60*24)) {
-                return Math.round(10*localStorage.timeSpent/(60*60))/10 + "<small> Hours </small>";
-            } else {
-                return Math.round(10*localStorage.timeSpent/(24*60*60))/10 + "<small> Days </small>";
-            }
-
-            
-        } else {
-            localStorage.timeSpent = 0;
-            return "---";
-        }
-    } , 
-    /**
-    Returns Mining status handle
-
-    @method (gasPrice)
-    */
-    'totalRewards': function(){
-        if (localStorage.totalRewards && localStorage.totalRewards>0) {
-            
-            //return localStorage.totalRewards;
-
-            var rewardPerBlock = 5;
-            var finalReward = rewardPerBlock * Number(localStorage.totalRewards);
-
-            if (finalReward<0.001) {
-                return Math.floor(finalReward * 100000)/100 + "<small> Finney </small>"
-            } else if (finalReward>1000) {
-                return Math.floor(finalReward/10)/100 + "<small> KEther </small>"
-            } else {
-                return Math.floor(finalReward)/100 + "<small> Ether </small>"
-            } 
-
-        } else {
-            localStorage.totalRewards = 0;
-            return "---";
-        }
-    } , 
-    /**
-    Returns Mining status handle
-
-    @method (gasPrice)
-    */
-    'averageRewardPerHour': function(){
-        if (localStorage.totalRewards && (localStorage.timeSpent>0) ) {
-
-            var rewardPerBlock = 5;
-            var rewardRate = rewardPerBlock*10*60*60*localStorage.totalRewards / localStorage.timeSpent;
-
-            if (rewardRate<0.001) {
-                return Math.floor(100000 * rewardRate)/100 + "<small> Finney/h </small>"
-            } else if (rewardRate>1000) {
-                return Math.floor(rewardRate/10)/100 + "<small> KEther/h </small>"
-            } else {
-                return Math.floor(100 * rewardRate)/100 + "<small> Ether/h </small>"
-            }
-
-            return reward;
-        } else {
-            return "---";
-        }
-    } 
+    // 'topics': function(messages){
+    //     if(_.isArray(messages)) {
+    //         var messages = Messages.find({_id: {$in: messages}}).fetch();
+    //         return _.uniq(_.compact(_.pluck(messages, 'topic')));
+    //     }
+    // }
 });
 
 
 
 Template['views_home'].events({
-
     /**
-    Change the mining slider
-    @event change input.slider-vertical 
+    Detect a link submitted and navigate to it
+
+    @event submit form.url-bar
     */
-    'change input.slider-vertical': function(e) {
-        var val = Number(e.currentTarget.value)
-        
-        //var miningText = ""; 
-        // switch (Number(e.currentTarget.value)) {
-        //     case 0:
-        //         miningText = "Off";
-        //         break;
+    'submit form.url-bar': function(e, template){
+        // if there's no http, add it.
+        var url = template.find('input.dapp-url-bar').value,
+        matches = url.match(/^([a-z]*\:\/\/)?([^\/.]+)(:?\/)(.*|$)/i),
+        requestedProtocol = (matches && matches[1] != "undefined")? "" : "http://";
 
-        //     case 1:
-        //         miningText = "On";
-        //         break;                
-        // }
-
-        $(".mining-status").text(val > 0.5 ? "On" : "Off");
-        $("input.slider-vertical").val( Math.round(val) );
+        window.location.href = requestedProtocol + url;
+        template.find('input.dapp-url-bar').value = ""
     }
-
-
-
 });
+
 

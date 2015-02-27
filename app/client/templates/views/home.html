@@ -1,74 +1,80 @@
 <template name="views_home">
-    
-    <div class="dapp-grid"></div>
 
-    <h2 class="page-title"> Network Health </h2>
-    
-
-    <h2> Mining </h2>
-    
-    <div class="dapp container mining-stats">
-        <div class="mining-slider dapp-big-number">
-            <input type="range" name="fee" min="0" max="1" step="0.01" value="{{miningSlider}}" class="slider-vertical">
-            <dd>Mining status</dd>
-            <dt class="mining-status">Off</dt>
-        </div>
-        <div class="dapp-big-number">
-            <dd>Time Spent</dd>
-            <dt class="time-spent">{{{timeSpent}}}</dt>
-        </div>        
-        <div class="dapp-big-number">
-            <dd>Rewards</dd>
-            <dt>{{{totalRewards}}}</dt>
-        </div>        
-        <div class="dapp-big-number">
-            <dd>avg Return</dd>
-            <dt> {{{averageRewardPerHour}}}</dt>
-        </div>        
-    </div>
-
-    
-    <h2> Connections </h2>
+    <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
+    <form class="url-bar" action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
+        <h1 class="ethereum-logo"> Ethereum </h1>
+        <input type="text" class="dapp-url-bar" placeholder="{{i18n 'catalog.home.urlPlaceholder'}}">
+    </form>
 
     <div class="dapp-container">
 
-        <dl class="latest-block-info">
+        <div class="dapp-listing row clear">
+            
 
-            <div class="dapp-big-number">
-                <dd>Peer Count</dd>
-                <dt>{{peerCount}} <small> Peers </small></dt>
+            <div class="col col-6 mobile-full">
+                <h1>{{{i18n 'catalog.home.ethereumDapps'}}}</h1>
+                <p>Lorem ipsum Nisi et ut culpa consequat pariatur consequat cillum et quis magna ea fugiat in do laborum.</p>
+
+                <a href="http://ethereum-dapp-whisper-client.meteor.com/chat/amsteam" class="dapp-box">
+                    <h2>Whisper Chat</h2>
+                    <p>Dark messaging for a more private conversation</p>
+                </a>
+
+                <a href="http://ethereum-dapp-wallet.meteor.com" class="dapp-box">
+                    <h2>Wallet</h2>
+                    <p>Play with your own money.</p>
+                </a>
+
+                <a href="http://en.wikipedia.org/wiki/Special:Random" class="dapp-box">
+                    <h2>Wikipedia</h2>
+                    <p>A random article</p>
+                </a>
+
+                <a class="dapp-box" href="http://etherian.io/namereg.html">
+                    <h2>Jeff's uber Namereg </h2>
+                    <p> the most complete namereg ever built</p>
+                </a>
+
+                <a class="dapp-box" href="http://etherian.io/dnsreg.html">
+                    <h2>DNS Registration</h2>
+                    <p> Award winning DNS registrar</p>
+                </a>
+
+                <a href="http://zerogox.com/ethereum/wei_faucet" class="dapp-box">
+                    <h2>Wei Faucet</h2>
+                    <p>Redistributing wealth, one wei at the time</p>
+                </a>
+
+                <a href="http://en.wikipedia.org/wiki/Special:Random" class="dapp-box">
+                    <h2>Wallet</h2>
+                    <p>Play with your own money.</p>
+                </a>
+
+                <a class="dapp-box">
+                    <h2>Transparent Democracy </h2>
+                    <p> A Decentralized Organization whith fully trackable expenses that are all up to vote</p>
+                </a>
+
+                <a class="dapp-box">
+                    <h2>Custom Asset</h2>
+                    <p> Create your own tradeable asset, currency or hour tracking</p>
+                </a>
+                
+                
             </div>
-            <div class="dapp-big-number">
-                <dd>Gas Price</dd>
-                <dt>{{gasPrice}} <small> Finney </small></dt>
-            </div>
-        </dl>
+            <div class="col col-6 mobile-full">
+                <h1>{{{i18n 'catalog.home.thirdPartyDapps'}}}</h1>
+                <p>Lorem ipsum Nisi et ut culpa consequat pariatur consequat cillum et quis magna ea fugiat in do laborum.</p>
 
-    </div>
-    
-    <h2> Block chain </h2>
+                <a class="dapp-box">
+                    <h2>Decentralized Exchange</h2>
+                    <p>Someone build this.</p>
+                </a>
 
-    <div class="block-chain">
-        <div class="wrapper">
-            {{#each blocks}}
-                <div class="dapp-box card" style="background-image:{{currentBlockPattern}}">
-                    {{> dapp_identicon identity='miner'}}
-                    <h1>Block {{number}}</h1>
-                    <h3>{{hash}}</h3>
-                    <dl>
-                        <dd>Gas Used</dd>
-                        <dt>{{gasUsed}}</dt>
-                        <dd>Size</dd>
-                        <dt>{{size}}</dt>
-                        <dd>Number of uncles</dd>
-                        <dt>{{uncles}}</dt>
-                        <dd>Time</dd>
-                        <dt>{{formatTime time 'YYYY-MM-DD HH:mm:ss'}}</dt>
-                    </dl>
-                </div>
-            {{/each}}
-            <div class="" style="">
-                    <h3>End of loaded blocks.</h3>
+                <a class="dapp-box">
+                    <h2>Russian Roullete</h2>
+                    <p>Someone else build that.</p>
+                </a>
             </div>
         </div>
     </div>
