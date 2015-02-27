@@ -1,8 +1,11 @@
 
-// Basic (local) collections, which will be observed by whisper (see whisperConnection.js)
-// we use {connection: null} to prevent them from syncing with our not existing Meteor server
+// Saves blocks on minimongo for easier tracking
 
-// Contains the users identities
-// User = new Mongo.Collection('user', {connection: null}); // the current users identity
-// new PersistentMinimongo(User);
+Blocks = new Mongo.Collection('blocks', {connection: null});
+new PersistentMinimongo(Blocks);
 
+Rewards = new Mongo.Collection('rewards', {connection: null});
+new PersistentMinimongo(Rewards);
+
+Hashrate = new Mongo.Collection('hashrate', {connection: null});
+new PersistentMinimongo(Rewards);
