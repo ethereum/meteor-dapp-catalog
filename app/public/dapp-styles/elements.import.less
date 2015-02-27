@@ -61,9 +61,14 @@
     display: inline-block;
     width: @gridWidth * 6;
     margin-right: @gridWidth/2;
+    padding-top: @gridHeight;
 
     dd {
         margin: 0;
+        font-size: 50%;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: @colorGrayDark;
     }
     dt  {
         color: @colorLink;
@@ -341,9 +346,12 @@ input[type="radio"] {
 }
 input[type="range"] {
     -webkit-appearance: none;
+    // position: relative;
     padding: 0;
     border: 0;
     background-color: transparent;
+    overflow: hidden;
+    height: @gridHeight;
 
     &::-webkit-slider-runnable-track {
         height: 5px;
@@ -358,22 +366,35 @@ input[type="range"] {
         height: 16px;
         width: 16px;
         border-radius: 50%;
-        background-color: @colorGrayDark;
+        background-color: @colorLink;
         margin-top: -6px;
+        z-index: 30;
+    }
+
+    &::-webkit-slider-thumb:after {
+        content: " ";
+        width: 500px;
+        height: 5px;
+        .background-image(-webkit-linear-gradient(to left, @colorLink 0%,  @colorLink 50%, transparent 100%));
+        display: block;
+        position: relative;
+        left: -500px;
+        top: 6px;
+        z-index: 20;
     }
 
     &:focus {
         outline: none;
     }
 
-    &:focus::-webkit-slider-thumb {
-        background-color: @colorLink;
-    }
+    // &:focus::-webkit-slider-thumb {
+    //     background-color: @colorLink;
+    // }
 
     &::-moz-range-track {
         // width: 300px;
         height: 5px;
-        background-color: @colorGray;
+        background-color: @colorLink;
         border: none;
         .border-radius(3px);
     }
@@ -392,8 +413,14 @@ input[type="range"] {
         outline: none;
     }
 
-    &:focus::-moz-range-thumb {
-        background-color: @colorLink;
+    // &:focus::-moz-range-thumb {
+    //     background-color: @colorLink;
+    // }
+
+    &.slider-vertical {
+        //-webkit-appearance: slider-vertical; //This isn't ready and changes the range button
+        transform: rotate(-90deg);
+        width: @gridHeight * 4;
     }
 }
 

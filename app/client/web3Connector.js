@@ -15,4 +15,16 @@ watcher.changed(function(result) {
         miner: web3.eth.block(result.number).coinbase,
         uncles: web3.eth.block(result.number).uncles.Length
     });
+
+    if (web3.eth.coinbase == web3.eth.block(result.number).coinbase ) {
+        
+
+        if (localStorage.totalRewards) {
+            localStorage.totalRewards++;
+        } else {
+            localStorage.totalRewards = 1;
+        }
+
+    } 
+
 });

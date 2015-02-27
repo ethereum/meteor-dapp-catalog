@@ -14,12 +14,23 @@
 @colorLink: #02A8F3;
 @colorBackgroundHeader: #d9d0d0;
 
+.page-title {
+    position: -webkit-sticky;
+    top: 15px;
+    left: 0;
+    right: 0;
+    background: transparent;
+    color: @colorGray;
+    display: block;
+    text-align: center;
+    margin: @gridHeight/2 0 @gridHeight * 4;
+}
 
 .block-chain {
     // background: @colorGrayLight;
     // width: 100%;
     margin: 0 -40px;
-    height: @gridHeight * 17;
+    height: @gridHeight * 18;
     padding: @gridHeight/2 @gridWidth/2;
     .dapp-overflow;
     // box-shadow: inset @colorGray 8px 2px 10px;
@@ -44,3 +55,16 @@
         }
     }
 }
+
+.mining-slider {
+    position: relative;
+    padding-left: @gridWidth /2 ;
+    .slider-vertical {
+        position: absolute;
+        top: @gridHeight * 1;
+        left: @gridWidth * -1.25;
+    }
+
+}
+
+

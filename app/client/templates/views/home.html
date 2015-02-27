@@ -2,7 +2,33 @@
     
     <div class="dapp-grid"></div>
 
+    <h2 class="page-title"> Network Health </h2>
     
+
+    <h2> Mining </h2>
+    
+    <div class="dapp container mining-stats">
+        <div class="mining-slider dapp-big-number">
+            <input type="range" name="fee" min="0" max="1" step="0.01" value="{{miningSlider}}" class="slider-vertical">
+            <dd>Mining status</dd>
+            <dt class="mining-status">Off</dt>
+        </div>
+        <div class="dapp-big-number">
+            <dd>Time Spent</dd>
+            <dt class="time-spent">{{{timeSpent}}}</dt>
+        </div>        
+        <div class="dapp-big-number">
+            <dd>Rewards</dd>
+            <dt>{{{totalRewards}}}</dt>
+        </div>        
+        <div class="dapp-big-number">
+            <dd>avg Return</dd>
+            <dt> {{{averageRewardPerHour}}}</dt>
+        </div>        
+    </div>
+
+    
+    <h2> Connections </h2>
 
     <div class="dapp-container">
 

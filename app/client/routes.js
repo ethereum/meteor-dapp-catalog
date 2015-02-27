@@ -28,7 +28,7 @@ Router.configure({
 
 // ROUTES
 
-/**
+/**  
 The home page of the catalog
 
 @method home
